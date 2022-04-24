@@ -1,1 +1,18 @@
-hello. visit your <a href="/gallery"> gallery </a>
+<html>
+  <head>
+    <script type="text/javascript">
+      let imageDOM = document.getElementById("latest-image");
+      function httpGet(theUrl) {
+        fetch(theUrl).then((response) =>
+          response.json().then((a) => {console.log(a);
+                                      imageDOM.href = a})
+        );
+      }
+      setInterval(() => httpGet("/latest-image"), 1000);
+    </script>
+  </head>
+  <body>
+    hello. the latest image is refreshed every 1s. visit your <a href="/gallery"> gallery </a> to see all images i have.
+    <img id="latest-image" />
+  </body>
+</html>

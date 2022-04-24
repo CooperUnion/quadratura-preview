@@ -13,17 +13,25 @@ const PORT = 3000;
 app.use(express.static("public"));
 app.use("/images", express.static("images"));
 
-
 app.get("/gallery", (req, res) => {
   let responseHTML = "<h1> your images </h1>";
   fs.readdir("./public/images", (error, files) => {
     var imgFiles = [];
     files.forEach((file) => {
-      responseHTML += `<img src='/images/${file}' />`
+      responseHTML += `<img src='/images/${file}' />`;
     });
     // res.send(files[files.length-1]);
-    res.set('Content-Type', 'text/html');
+    res.set("Content-Type", "text/html");
     res.send(Buffer.from(responseHTML));
+  });
+});
+
+app.get("/latest-image", (req, res) => {
+  fs.readdir("./public/images", (error, files) => {
+    res.setHeader("Content-Type", "application/json");
+    res.end(JSON.stringify({ image: "/images" + files[files.length - 1] }));
+
+    res.send();
   });
 });
 
