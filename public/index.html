@@ -1,18 +1,25 @@
 <html>
   <head>
     <script type="text/javascript">
-      let imageDOM = document.getElementById("latest-image");
-      function httpGet(theUrl) {
-        fetch(theUrl).then((response) =>
-          response.json().then((a) => {console.log(a);
-                                      imageDOM.href = a})
+      
+      function refreshImage() {
+        fetch("/latest-image").then((response) =>
+          response.json().then((a) => {
+            console.log(a);
+            let imageDOM = document.getElementById("latest-image");
+            if (imageDOM) imageDOM.src = a.image;
+          })
         );
       }
-      setInterval(() => httpGet("/latest-image"), 1000);
+      setInterval(() => refreshImage(), 1000);
+      refreshImage();
     </script>
   </head>
   <body>
-    hello. the latest image is refreshed every 1s. visit your <a href="/gallery"> gallery </a> to see all images i have.
-    <img id="latest-image" />
+    hello. the latest image is refreshed every 1s. visit your
+    <a href="/gallery"> gallery </a> to see all images i have.
+    <div>
+      <img id="latest-image" />
+    </div>
   </body>
 </html>

@@ -20,6 +20,7 @@ function sketch(p) {
         p.background("yellow");
         
         p.translate(width/2, height/2);
+        p.fill(p.random(0,360), 50,50);
         p.ellipse(0,0, 10,10);
 
         screen(p, canvas);
