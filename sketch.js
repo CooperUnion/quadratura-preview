@@ -4,7 +4,7 @@ import screen from './screen.js';
 let width = 320
 let height = 240
 let canvas
-let fps = 2
+let fps = 1
 
 function sketch(p) {
     p.setup = () => {
@@ -25,7 +25,6 @@ function sketch(p) {
 
         //console.log(canvas.canvas.toDataURL())
         screen(p, canvas);
-      p.noLoop();
     }
 }
 let p5Instance = p5.createSketch(sketch);
