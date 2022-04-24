@@ -11,18 +11,16 @@ class Screen {
   constructor(location = 'public/images/'){
     this.counter = 0
     this.location = location
-    this.p = p
-    this.canvas = canvas
     this.render = GLITCH ? this.display : this.save
   }
   
-  display (p, ) {
-    console.log(this.p.canvas.toDataURL())
+  display (p = this.p, canvas=this.canvas) {
+    console.log(p.canvas.toDataURL())
   }
   
-  save() {
+  save(p = this.p, canvas=this.canvas) {
     const fileName = "mySketch" + Date.now();
-    this.p.saveCanvas(this.canvas, "public/images/" + fileName, "png").then(
+    p.saveCanvas(this.canvas, "public/images/" + fileName, "png").then(
       (filename) => {
         console.log(`saved the canvas as ${filename}`)
         lastFile = fileName;
@@ -31,4 +29,12 @@ class Screen {
   }
 }
 
-export default Screen;
+const screen = new Screen()
+export default Screen
+
+const { render } = screen
+export { render }
+
+
+
+

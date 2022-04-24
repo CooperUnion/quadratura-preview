@@ -1,8 +1,6 @@
 import p5 from 'node-p5'
-import Screen from './screen.js';
+import { render } from './screen.js';
 
-const screen = new Screen()
-const { render } = screen
 
 let width = 320
 let height = 240
