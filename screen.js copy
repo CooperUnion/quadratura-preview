@@ -8,7 +8,7 @@ const fsImageDir = "./public/images";
 
 
 class Screen {
-  constructor(location = 'public/images/'){
+  constructor(p, canvas, location = 'public/images/'){
     this.counter = 0
     this.location = location
     this.p = p
@@ -16,7 +16,7 @@ class Screen {
     this.render = GLITCH ? this.display : this.save
   }
   
-  display (p, ) {
+  display () {
     console.log(this.p.canvas.toDataURL())
   }
   
@@ -31,4 +31,19 @@ class Screen {
   }
 }
 
-export default Screen;
+const screen = (p, canvas) => {
+  if (GLITCH) {
+    console.log("trying to save");
+    const fileName = "mySketch" + Date.now();
+    p.saveCanvas(canvas, "public/images/" + fileName, "png").then(
+      (filename) => {
+        console.log(`saved the canvas as ${filename}`);
+        lastFile = fileName;
+      }
+    );
+  } else {
+    console.log(p.canvas.toDataURL());
+  }
+};
+
+export default screen;
