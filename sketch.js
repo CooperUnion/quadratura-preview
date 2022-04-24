@@ -1,6 +1,6 @@
 import p5 from 'node-p5'
-import { render } from './screen.js';
-
+import Screen from './screen.js';
+const screen = new Screen()
 
 let width = 320
 let height = 240
@@ -24,7 +24,7 @@ function sketch(p) {
         p.fill(p.random(0,360), 50,50);
         p.ellipse(0,0, 10,10);
 
-        render(p, canvas);
+        screen.render(p, canvas);
     }
 }
 let p5Instance = p5.createSketch(sketch);
