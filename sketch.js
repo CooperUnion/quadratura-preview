@@ -24,7 +24,7 @@ function sketch(p) {
         p.ellipse(0,0, 10,10);
 
         //console.log(canvas.canvas.toDataURL())
-        screen(p);
+        screen(p, canvas);
       p.noLoop();
     }
 }
