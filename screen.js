@@ -1,11 +1,26 @@
-  const GLITCH = true;
 import fs from "fs";
+import path from "path";
+
+const GLITCH = true;
+
+let lastFile = "";
+const fsImageDir = "./public/images";
 
 const screen = (p, canvas) => {
   if (GLITCH) {
-    p.saveCanvas(canvas, "public/images/mySketch" + Date.now(), "png").then((filename) => {
-      console.log(`saved the canvas as ${filename}`);
-    });
+    const fileName = "mySketch" + Date.now();
+    if (lastFile !== "" && lastFile) {
+      let fileToDelete = fsImageDir + lastFile + ".png";
+      fs.unlink(path.join(fsImageDir, lastFile + ".png"), (err) => {
+        if (err) throw err;
+      }).then(console.log("Deleted "));
+    }
+    p.saveCanvas(canvas, "public/images/" + fileName, "png").then(
+      (filename) => {
+        console.log(`saved the canvas as ${filename}`);
+        lastFile = fileName;
+      }
+    );
   } else {
     console.log(p.canvas.toDataURL());
   }

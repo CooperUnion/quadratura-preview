@@ -13,6 +13,9 @@ const PORT = 3000;
 app.use(express.static("public"));
 app.use("/images", express.static("images"));
 
+
+
+
 app.get("/gallery", (req, res) => {
   let responseHTML = "<h1> hello </h1>";
   fs.readdir("./public/images", (error, files) => {

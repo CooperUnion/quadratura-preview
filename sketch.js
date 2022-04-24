@@ -15,7 +15,6 @@ function sketch(p) {
         p.frameRate(fps)
         p.stroke(0)
         p.noFill()
-
     }
     p.draw = () => {
         p.background("yellow");
@@ -23,8 +22,8 @@ function sketch(p) {
         p.translate(width/2, height/2);
         p.ellipse(0,0, 10,10);
 
-        //console.log(canvas.canvas.toDataURL())
         screen(p, canvas);
+        
     }
 }
 let p5Instance = p5.createSketch(sketch);
