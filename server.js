@@ -15,17 +15,16 @@ app.use("/images", express.static("images"));
 
 
 app.get("/gallery", (req, res) => {
-  let responseHTML = "<h1> hello </h1>";
+  let responseHTML = "<h1> your images </h1>";
   fs.readdir("./public/images", (error, files) => {
     var imgFiles = [];
     files.forEach((file) => {
       responseHTML += `<img src='/images/${file}' />`
     });
-    res.send(files[files.length-1]);
-    //res.send(Buffer.from(responseHTML));
+    // res.send(files[files.length-1]);
+    res.set('Content-Type', 'text/html');
+    res.send(Buffer.from(responseHTML));
   });
-  
-  
 });
 
 // Server setup
