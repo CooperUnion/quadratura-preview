@@ -6,6 +6,9 @@ const GLITCH = true;
 let lastFile = "";
 const fsImageDir = "./public/images";
 
+
+
+
 const screen = (p, canvas) => {
   if (GLITCH) {
     console.log("trying to save");
